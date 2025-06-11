@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://csv177lop58jx"]
+
+[ext_resource type="Texture2D" uid="uid://bhtx4brmynpii" path="res://purple.png" id="1_6pwku"]
+[ext_resource type="Script" uid="uid://1dlo20hitt0u" path="res://level.gd" id="1_meb13"]
+[ext_resource type="PackedScene" uid="uid://yxelwhv26td8" path="res://player.tscn" id="2_tof5g"]
+[ext_resource type="PackedScene" uid="uid://3i223qph1r83" path="res://maze.tscn" id="3_3nyug"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_45o3f"]
+font_size = 19
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_meb13")
+
+[node name="Graphics" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Graphics"]
+layer = -10
+
+[node name="Background" type="TextureRect" parent="Graphics/CanvasLayer"]
+z_index = -99
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6pwku")
+stretch_mode = 1
+
+[node name="Tutorial" type="Label" parent="Graphics"]
+z_index = 16
+offset_left = 59.0
+offset_top = 114.0
+offset_right = 361.0
+offset_bottom = 163.0
+text = "Use WASD or left,right,up,down keys to
+guide the UFO to VICTORY"
+
+[node name="StartLabel" type="Label" parent="Graphics"]
+offset_left = 117.0
+offset_top = 51.0
+offset_right = 162.0
+offset_bottom = 78.0
+text = "Start"
+label_settings = SubResource("LabelSettings_45o3f")
+
+[node name="EndLabel" type="Label" parent="Graphics"]
+offset_left = 378.0
+offset_top = 413.0
+offset_right = 423.0
+offset_bottom = 440.0
+text = "End"
+label_settings = SubResource("LabelSettings_45o3f")
+
+[node name="Maze" parent="." instance=ExtResource("3_3nyug")]
+position = Vector2(413, 393)
+
+[node name="Player" parent="." instance=ExtResource("2_tof5g")]
+position = Vector2(171, 92)
+scale = Vector2(1, 1)
+
+[connection signal="body_exited" from="Maze" to="." method="_on_maze_body_exited"]
+
+[editable path="Player"]
