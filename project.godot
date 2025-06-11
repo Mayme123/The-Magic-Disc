@@ -11,9 +11,28 @@ config_version=5
 [application]
 
 config/name="Disc Golf Game"
-run/main_scene="res://level_1.tscn"
+run/main_scene="res://Courses/Course0/level_1.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+CourseManager="*res://Courses/course_manager.gd"
+CourseScorings="*res://InBetweenRounds/course_scorings.gd"
+Globals="*res://globals.gd"
+Signals="*res://signals.gd"
+
+[file_customization]
+
+folder_colors={
+"res://Courses/": "green",
+"res://Disc/": "purple",
+"res://InBetweenRounds/": "red",
+"res://Main Menu/": "teal",
+"res://Music/": "yellow",
+"res://NarrativeImageStills/": "pink",
+"res://Sound Effects/": "blue"
+}
 
 [input]
 
